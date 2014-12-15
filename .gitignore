@@ -1,3 +1,7 @@
 .lein*
 .nrepl*
 target/
+resources/public/js/app.js
+resources/public/js/out.js.map
+resources/public/js/out/
+
