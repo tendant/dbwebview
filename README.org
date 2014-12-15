@@ -1,5 +1,5 @@
 * DbWebView
-Simple web ui for querying database using Reagent, ClojureScript
+Simple web ui for querying database. Built with Reagent, ClojureScript.
 
 ** Usage
 
