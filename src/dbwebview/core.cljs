@@ -42,7 +42,12 @@
      [:p @sql]
      [:p [query-button]]
      (if @sql-result
-       (map (fn [row] [:p (.stringify js/JSON row)]) @sql-result))]))
+       [:table
+        [:thead
+         [:tr (map (fn [[k v]] [:th k]) (first @sql-result))]]
+        [:tbody
+         (map (fn [row] [:tr
+                         (map (fn [[k v]] [:td v]) row)]) @sql-result)]])]))
 
 (defn main []
   (reagent/render-component [page] (.getElementById js/document "app")))
