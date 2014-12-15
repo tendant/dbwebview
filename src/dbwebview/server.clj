@@ -27,7 +27,7 @@
     (let [port (Integer. (or port (System/getenv "PORT") 9000))]
       (print "Starting web server on port" port ".\n")
       (run-jetty http-handler {:port port
-                                                 :join? false})))
+                               :join? false})))
   server)
 
 (defn -main [& [port]]
