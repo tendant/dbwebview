@@ -5,6 +5,7 @@
             [ring.middleware.reload :as reload]
             [ring.middleware.params :refer [wrap-params]]
             [ring.middleware.json :refer [wrap-json-params wrap-json-response]]
+            [ring.util.response :refer [response]]
             [dbwebview.db :as db]))
 
 (defroutes routes
@@ -12,7 +13,7 @@
         (do
           (println request)
           (println "query: " sql)
-          (db/run-query sql)))
+          (response (db/run-query sql))))
   (resources "/")
   (GET "/" req (io/resource "index.html"))
   (GET "/hello" [] "world"))

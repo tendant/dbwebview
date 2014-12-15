@@ -24,6 +24,7 @@
   (POST "/query"
         {:params {:sql @sql}
          :format :json
+         :response-format :json
          :handler handler
          :error-handler error-handler}))
 
@@ -41,7 +42,7 @@
      [:p @sql]
      [:p [query-button]]
      (if @sql-result
-       [:p @sql-result])]))
+       (map (fn [row] [:p (.stringify js/JSON row)]) @sql-result))]))
 
 (defn main []
   (reagent/render-component [page] (.getElementById js/document "app")))
