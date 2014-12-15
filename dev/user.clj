@@ -10,7 +10,8 @@
 
 (defroutes routes
   (resources "/")
-  (GET "/*" req (io/resource "index.html")))
+  (GET "/" req (io/resource "index.html"))
+  (GET "/hello" [] "world"))
 
 (def http-handler (reload/wrap-reload (api #'routes)))
 
@@ -22,7 +23,7 @@
                                :join? false})))
   server)
 
-(defn start-figwheel []
+ (defn start-figwheel []
   (future
     (print "Starting figwheel.\n")
     (lein/-main ["figwheel"])))

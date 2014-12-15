@@ -11,10 +11,11 @@
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [ring "1.3.1"]
                  [compojure "1.2.0"]
-                 [figwheel "0.1.4-SNAPSHOT"]
+                 [figwheel "0.1.7-SNAPSHOT"]
                  [environ "1.0.0"]
                  [leiningen "2.5.0"]
-                 [reagent "0.5.0-alpha"]]
+                 [reagent "0.5.0-alpha"]
+                 [cljs-ajax "0.3.3"]]
 
   :min-lein-version "2.5.0"
 
@@ -24,7 +25,8 @@
             [lein-figwheel "0.1.4-SNAPSHOT"]]
 
   :figwheel {:http-server-root "public"
-             :port 3449}
+             :port 3449
+             :ring-handler dbwebview.server/handler}
 
   :cljsbuild {:builds {:app {:source-paths ["src" "dev"]
                              :compiler {:output-to "resources/public/js/app.js"
