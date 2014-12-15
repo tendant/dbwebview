@@ -4,13 +4,15 @@
             [compojure.route :refer [resources]]
             [ring.middleware.reload :as reload]
             [ring.middleware.params :refer [wrap-params]]
-            [ring.middleware.json :refer [wrap-json-params wrap-json-response]]))
+            [ring.middleware.json :refer [wrap-json-params wrap-json-response]]
+            [dbwebview.db :as db]))
 
 (defroutes routes
   (POST "/query" [sql :as request]
         (do
           (println request)
-          (str "result: " sql)))
+          (println "query: " sql)
+          (db/run-query sql)))
   (resources "/")
   (GET "/" req (io/resource "index.html"))
   (GET "/hello" [] "world"))
