@@ -1,0 +1,12 @@
+* DbWebView
+Simple web ui for querying database using Reagent, ClojureScript
+
+** Usage
+
+** Start web server
+#+BEGIN_EXAMPLE
+ $ lein cljsbuild once
+ $ lein ring server-headless
+#+END_EXAMPLE
+
+ Before start server, update database connection information in src/dbwebview/db.clj file.
