@@ -9,4 +9,19 @@ Simple web ui for querying database. Built with Reagent, ClojureScript.
  $ lein ring server-headless
 #+END_EXAMPLE
 
- Before start server, update database connection information in src/dbwebview/db.clj file.
+ Before start server, update database connection information in
+ src/dbwebview/db.clj file or configure database parameters using
+ environment variables: 
+
+#+BEGIN_EXAMPLE
+ CLASS_NAME: JDBC driver class name
+ SUB_PROTOCOL: JDBC driver sub protocol
+ DB_HOST: Database server
+ DB_PORT: Database port
+ DB_NAME: Database name
+ DB_USER: Database username
+ DB_PASSWORD: Database password
+ DB_OPTIONS: Database JDBC connection options
+#+END_EXAMPLE
+
+
