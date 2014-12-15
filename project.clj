@@ -26,7 +26,7 @@
             [lein-ring "0.8.13"]
             [lein-figwheel "0.1.4-SNAPSHOT"]]
 
-  :ring {:handler user/http-handler
+  :ring {:handler dbwebview.server/http-handler
          :auto-reload? true}
 
   :figwheel {:http-server-root "public"
