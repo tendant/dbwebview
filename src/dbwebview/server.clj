@@ -1,4 +1,5 @@
 (ns dbwebview.server
+  (:gen-class)
   (:require [clojure.java.io :as io]
             [compojure.core :refer [GET POST defroutes]]
             [compojure.route :refer [resources]]
