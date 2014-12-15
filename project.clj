@@ -31,6 +31,8 @@
   :ring {:handler dbwebview.server/http-handler
          :auto-reload? true}
 
+  :main dbwebview.server
+
   :figwheel {:http-server-root "public"
              :port 3449}
 

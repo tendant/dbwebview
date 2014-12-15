@@ -6,6 +6,7 @@
             [ring.middleware.params :refer [wrap-params]]
             [ring.middleware.json :refer [wrap-json-params wrap-json-response]]
             [ring.util.response :refer [response]]
+            [ring.adapter.jetty :refer [run-jetty]]
             [dbwebview.db :as db]))
 
 (defroutes routes
@@ -19,4 +20,15 @@
   (GET "/hello" [] "world"))
 
 (def http-handler (wrap-json-response (reload/wrap-reload (wrap-json-params #'routes))))
+
+(defn run [& [port]]
+  (defonce ^:private server
+    (let [port (Integer. (or port (System/getenv "PORT") 9000))]
+      (print "Starting web server on port" port ".\n")
+      (run-jetty http-handler {:port port
+                                                 :join? false})))
+  server)
+
+(defn -main [& [port]]
+  (run port))
 
