@@ -23,11 +23,14 @@
   :plugins [[cider/cider-nrepl "0.8.0-SNAPSHOT"]
             [lein-cljsbuild "1.0.3"]
             [lein-environ "1.0.0"]
+            [lein-ring "0.8.13"]
             [lein-figwheel "0.1.4-SNAPSHOT"]]
 
+  :ring {:handler user/http-handler
+         :auto-reload? true}
+
   :figwheel {:http-server-root "public"
-             :port 3449
-             :ring-handler dbwebview.server/handler}
+             :port 3449}
 
   :cljsbuild {:builds {:app {:source-paths ["src" "dev"]
                              :compiler {:output-to "resources/public/js/app.js"
