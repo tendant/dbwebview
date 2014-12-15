@@ -5,22 +5,27 @@
 (defonce app-state (atom {:text "Hello, what is your name? "}))
 
 (defn sql-input [value]
-  [:input {:type "text"
-           :value @value
-           :on-change #(reset! value (-> % .-target .-value))}])
+  [:textarea {:value @value
+              :on-change #(reset! value (-> % .-target .-value))}])
 
 (def sql (atom nil))
 
+(def sql-result (atom nil))
+
 (defn handler [response]
+  (reset! sql-result response)
   (.log js/console (str response)))
 
 (defn error-handler [{:keys [status status-text]}]
   (.log js/console (str "something bad happened: " status " " status-text)))
 
 (defn query-sql []
-  (GET "/hello"
-       {:handler handler
-        :error-handler error-handler}))
+  (.log js/console @sql)
+  (POST "/query"
+        {:params {:sql @sql}
+         :format :json
+         :handler handler
+         :error-handler error-handler}))
 
 (defn query-button []
   [:button {:type "submit"
@@ -34,7 +39,9 @@
      [:p (@app-state :text) "FIXME"]
      [:p [sql-input sql]]
      [:p @sql]
-     [:p [query-button]]]))
+     [:p [query-button]]
+     (if @sql-result
+       [:p @sql-result])]))
 
 (defn main []
   (reagent/render-component [page] (.getElementById js/document "app")))
