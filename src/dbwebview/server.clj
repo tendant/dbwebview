@@ -4,8 +4,7 @@
             [compojure.route :refer [resources]]
             [ring.middleware.reload :as reload]
             [ring.middleware.params :refer [wrap-params]]
-            [ring.middleware.json :refer [wrap-json-params wrap-json-response]]
-))
+            [ring.middleware.json :refer [wrap-json-params wrap-json-response]]))
 
 (defroutes routes
   (POST "/query" [sql :as request]

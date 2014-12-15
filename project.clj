@@ -12,6 +12,8 @@
                  [ring "1.3.1"]
                  [ring/ring-json "0.3.1"]
                  [compojure "1.2.0"]
+                 [org.clojure/java.jdbc "0.3.6"]
+                 [org.postgresql/postgresql "9.2-1003-jdbc4"]
                  [figwheel "0.1.7-SNAPSHOT"]
                  [environ "1.0.0"]
                  [leiningen "2.5.0"]
