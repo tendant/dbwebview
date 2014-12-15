@@ -14,7 +14,7 @@
                  [figwheel "0.1.4-SNAPSHOT"]
                  [environ "1.0.0"]
                  [leiningen "2.5.0"]
-                 [reagent "0.4.2"]]
+                 [reagent "0.5.0-alpha"]]
 
   :min-lein-version "2.5.0"
 
