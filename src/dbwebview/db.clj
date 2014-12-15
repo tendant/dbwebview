@@ -3,15 +3,21 @@
 
 
 ;; grant select on all tables in schema public to dbwebview;
-(let [db-host "localhost"
-      db-port 5432
-      db-name "dbwebview"
-      db-user "dbwebview"
-      db-password "dbwebview"]
+(let [class-name (or (System/getenv "CLASS_NAME") "org.postgresql.Driver")
+      sub-protocol (or (System/getenv "SUB_PROTOCOL") "postgresql")
+      db-host (or (System/getenv "DB_HOST") "localhost")
+      db-port (or (System/getenv "DB_PORT") 5432)
+      db-name (or (System/getenv "DB_NAME") "dbwebview")
+      db-user (or (System/getenv "DB_USER") "dbwebview")
+      db-password (or (System/getenv "DB_PASSWORD") "dbwebview")
+      db-options (System/getenv "DB_OPTIONS")]
  
-  (def db-conn {:classname "org.postgresql.Driver" ; must be in classpath
-                :subprotocol "postgresql"
-                :subname (str "//" db-host ":" db-port "/" db-name)
+  (def db-conn {:classname class-name ; must be in classpath
+                :subprotocol sub-protocol
+                :subname (str "//" db-host ":" db-port "/" db-name
+                              "?user=" db-user "&password=" db-password
+                              (if (not (empty? db-options))
+                                (str "&" db-options)))
                 ;; Any additional keys are passed to the driver
                 ;; as driver-specific properties.
                 :user db-user
