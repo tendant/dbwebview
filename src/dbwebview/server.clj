@@ -8,7 +8,8 @@
             [ring.middleware.json :refer [wrap-json-params wrap-json-response]]
             [ring.util.response :refer [response]]
             [ring.adapter.jetty :refer [run-jetty]]
-            [dbwebview.db :as db]))
+            [dbwebview.db :as db]
+            [clojure.tools.logging :as log]))
 
 (defroutes routes
   (POST "/query" [sql :as request]
