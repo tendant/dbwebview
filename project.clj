@@ -19,7 +19,8 @@
                  [leiningen "2.5.0"]
                  [reagent "0.5.0-alpha"]
                  [cljs-ajax "0.3.3"]
-                 [org.clojure/tools.logging "0.3.1"]]
+                 [org.clojure/tools.logging "0.3.1"]
+                 [ch.qos.logback/logback-classic "1.1.2"]]
 
   :min-lein-version "2.5.0"
 

@@ -1,5 +1,6 @@
 .lein*
 .nrepl*
+*.log
 target/
 resources/public/js/app.js
 resources/public/js/out.js.map
