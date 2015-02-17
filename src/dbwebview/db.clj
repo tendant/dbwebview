@@ -1,5 +1,6 @@
 (ns dbwebview.db
-  (:require [clojure.java.jdbc :as jdbc]))
+  (:require [clojure.java.jdbc :as jdbc]
+            [clojure.tools.logging :as log]))
 
 
 ;; grant select on all tables in schema public to dbwebview;
@@ -31,6 +32,7 @@
        (into {})))
 
 (defn run-query [sql]
+  (log/info "SQL INPUT: '" sql "'")
   (jdbc/query db-conn
               (str sql " limit 50")
               :row-fn filter-out-binary))

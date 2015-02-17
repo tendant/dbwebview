@@ -18,7 +18,8 @@
                  [environ "1.0.0"]
                  [leiningen "2.5.0"]
                  [reagent "0.5.0-alpha"]
-                 [cljs-ajax "0.3.3"]]
+                 [cljs-ajax "0.3.3"]
+                 [org.clojure/tools.logging "0.3.1"]]
 
   :min-lein-version "2.5.0"
 

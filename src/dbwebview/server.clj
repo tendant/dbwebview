@@ -13,8 +13,8 @@
 (defroutes routes
   (POST "/query" [sql :as request]
         (do
-          (println request)
-          (println "query: " sql)
+          (log/info request)
+          (log/info "query: " sql)
           (response (db/run-query sql))))
   (resources "/")
   (GET "/" req (io/resource "index.html"))
