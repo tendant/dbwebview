@@ -1,4 +1,4 @@
-<configuration debug="false" scan="true" scanPeriod="10 seconds">
+<configuration debug="false">
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> 
     <!-- encoders are  by default assigned the type
          ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
@@ -7,7 +7,7 @@
     </encoder>
   </appender>
 
-  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <file>dbwebview.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <!-- daily rollover -->
