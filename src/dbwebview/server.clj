@@ -11,12 +11,17 @@
             [dbwebview.db :as db]
             [clojure.tools.logging :as log]))
 
+(add-encoder org.postgresql.util.PGobject encode-str)
+
 (defroutes routes
   (POST "/query" [sql :as request]
-        (do
+        (try
           (log/info request)
           (log/info "query: " sql)
-          (response (db/run-query sql))))
+          (response (db/run-query sql))
+          (catch RuntimeException e
+            (response {:status 500
+                       :body (str "Caught Exception: " (.getMessage e))}))))
   (resources "/")
   (GET "/" req (io/resource "index.html"))
   (GET "/hello" [] "world"))

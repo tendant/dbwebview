@@ -16,8 +16,8 @@
   (reset! sql-result response)
   (.log js/console (str response)))
 
-(defn error-handler [{:keys [status status-text]}]
-  (.log js/console (str "something bad happened: " status " " status-text)))
+(defn error-handler [{:keys [status status-text body]}]
+  (.log js/console (str "something bad happened: " status " " status-text " body: " body)))
 
 (defn query-sql []
   (.log js/console @sql)
