@@ -12,12 +12,15 @@
 
 (def sql-result (atom nil))
 
+(def error (atom nil))
+
 (defn handler [response]
   (reset! sql-result response)
   (.log js/console (str response)))
 
 (defn error-handler [{:keys [status status-text body]}]
-  (.log js/console (str "something bad happened: " status " " status-text " body: " body)))
+  (reset! error status-text)
+  (.log js/console (str "Something bad happened: " status " " status-text)))
 
 (defn query-sql []
   (.log js/console @sql)
@@ -37,9 +40,11 @@
 (defn page []
   (let []
     [:div
-     [:p (@app-state :text) "FIXME"]
+     [:p (@app-state :text)]
+     (if @error
+       [:p @error])
      [:p [sql-input sql]]
-     [:p @sql]
+     [:p (str @sql " limit 50")]
      [:p [query-button]]
      (if @sql-result
        [:table

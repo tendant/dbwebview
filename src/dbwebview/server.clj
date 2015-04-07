@@ -9,7 +9,8 @@
             [ring.util.response :refer [response]]
             [ring.adapter.jetty :refer [run-jetty]]
             [dbwebview.db :as db]
-            [clojure.tools.logging :as log]))
+            [clojure.tools.logging :as log]
+            [cheshire.generate :refer [add-encoder encode-str remove-encoder]]))
 
 (add-encoder org.postgresql.util.PGobject encode-str)
 
@@ -19,9 +20,11 @@
           (log/info request)
           (log/info "query: " sql)
           (response (db/run-query sql))
-          (catch RuntimeException e
-            (response {:status 500
-                       :body (str "Caught Exception: " (.getMessage e))}))))
+          (catch Throwable e
+            {:status 500
+             :headers {}
+             :status-text (str "Caught Exception: " (.getMessage e))
+             :body (str "Caught Exception: " (.getMessage e))})))
   (resources "/")
   (GET "/" req (io/resource "index.html"))
   (GET "/hello" [] "world"))
