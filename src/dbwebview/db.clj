@@ -37,3 +37,6 @@
               (str sql " limit 50")
               :row-fn filter-out-binary))
 
+(defn -main [& args]
+  (let [query (first args)]
+    (run-query query)))
